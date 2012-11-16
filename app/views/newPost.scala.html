@@ -1,0 +1,27 @@
+@(refPost: Option[Post])
+
+@main("New Post") {
+
+<div class="mainText">
+    <fieldset><legend>New post</legend>
+    <form method="post">
+        <div><input type="hidden" name="refPostId" id="refPostId" value="@(
+            refPost match { case Some(post) => post.id case None => }
+        )" /></div>
+        <div><label for="author">Your Name</label> <input type="text" name="author" id="author" /></div>
+        <div><label for="subject">Subject</label> <input type="text" name="subject" id="subject" value="@(
+            refPost match { case Some(post) => "re: " + post.subject case None => }
+        )" /></div>
+        <div><label for="body">Message</label> <textarea name="body" id="body"></textarea></div>
+        <div><input type="submit" id="submit" /></div>
+    </form>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#author').focus();
+    })
+</script>
+
+}

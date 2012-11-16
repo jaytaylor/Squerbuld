@@ -1,0 +1,26 @@
+@(post: models.Post)
+
+@display(post: models.Post) = {
+    <div class="post">
+        <div>Subject: @post.subject</div>
+
+        <div>Author: @post.author at @post.created</div>
+
+        <p>@post.body</p>
+    </div>
+    @if(post.getReplies.length > 0) {
+        @post.getReplies.map { reply =>
+            @display(reply)
+        }
+    }
+}
+
+@main(post.subject) {
+
+    <div class="mainText">
+
+        @display(post = post)
+
+        <div>[<a href="/newPost?refPostId=@post.id">Reply</a>]</div>
+    </div>
+}

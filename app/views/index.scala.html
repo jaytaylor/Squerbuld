@@ -1,0 +1,16 @@
+@(
+    threads: List[models.Post]
+)
+
+@main("Public Bulletin Board") {
+
+    <div class="mainText">
+        <b>HI!</b>
+
+        <table>
+        @threads.map { thread =>
+            <tr><td><a href="/view/@thread.id">@thread.subject</a></td></tr>
+        }
+        </table>
+    </div>
+}

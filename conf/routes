@@ -1,0 +1,14 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+
+GET     /newPost                    controllers.Application.newPostForm(refPostId: Option[Long] ?= None)
+POST    /newPost                    controllers.Application.processNewPost
+
+GET     /view/:postId               controllers.Application.displayPost(postId: Long)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
